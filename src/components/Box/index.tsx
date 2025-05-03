@@ -1,76 +1,87 @@
 import React, { ReactNode } from "react";
+import { getStylesFromProps } from "../../helpers";
 
 export type PaddingProps = {
-    p: string;
-    px: string;
-    py: string;
-    pt: string;
-    pr: string;
-    pb: string;
-    pl: string;
+  p?: string | number;
+  px?: string | number;
+  py?: string | number;
+  pt?: string | number;
+  pr?: string | number;
+  pb?: string | number;
+  pl?: string | number;
+  paddingUnit?: string;
 };
 
 export type MarginProps = {
-    m: string;
-    mx: string;
-    my: string;
-    mt: string;
-    mr: string;
-    mb: string;
-    ml: string;
+  m?: string | number;
+  mx?: string | number;
+  my?: string | number;
+  mt?: string | number;
+  mr?: string | number;
+  mb?: string | number;
+  ml?: string | number;
+  marginUnit?: string;
 };
 
 export type WidthProps = {
-    width: string;
-    minWidth: string;
-    maxWidth: string;
+  width?: React.CSSProperties["width"];
+  minWidth?: React.CSSProperties["minWidth"];
+  maxWidth?: React.CSSProperties["maxWidth"];
+  widthUnit?: string;
 };
 
 export type HeightProps = {
-    height: string;
-    minHeight: string;
-    maxHeight: string;
+  height?: React.CSSProperties["height"];
+  minHeight?: React.CSSProperties["minHeight"];
+  maxHeight?: React.CSSProperties["maxHeight"];
+  heightUnit?: string;
 };
 
 export type PositioningProps = {
-    position: string;
-    inset: string;
-    top: string;
-    right: string;
-    bottom: string;
-    left: string;
+  position?: React.CSSProperties["position"];
+  inset?: React.CSSProperties["inset"];
+  top?: React.CSSProperties["top"];
+  right?: React.CSSProperties["right"];
+  bottom?: React.CSSProperties["bottom"];
+  left?: React.CSSProperties["left"];
 };
 
 export type FlexChildrenProps = {
-    flexBasis: string;
-    flexShrink: string;
-    flexGrow: string;
+  flexBasis?: React.CSSProperties["flexBasis"];
+  flexShrink?: React.CSSProperties["flexShrink"];
+  flexGrow?: React.CSSProperties["flexGrow"];
 };
 
 export type GridChildrenProps = {
-    gridArea: string;
-    gridColumn: string;
-    gridColumnStart: string;
-    gridColumnEnd: string;
-    gridRow: string;
-    gridRowStart: string;
-    gridRowEnd: string;
+  gridArea?: React.CSSProperties["gridArea"];
+  gridColumn?: React.CSSProperties["gridColumn"];
+  gridColumnStart?: React.CSSProperties["gridColumnStart"];
+  gridColumnEnd?: React.CSSProperties["gridColumnEnd"];
+  gridRow?: React.CSSProperties["gridRow"];
+  gridRowStart?: React.CSSProperties["gridRowStart"];
+  gridRowEnd?: React.CSSProperties["gridRowEnd"];
 };
+
 
 export type BoxProps = {
     children: ReactNode;
     as?: "div" | "span";
-};
+} & Partial<PaddingProps> &
+    Partial<MarginProps> &
+    Partial<PositioningProps> &
+    Partial<FlexChildrenProps> &
+    Partial<GridChildrenProps>;
 
 export const Box = React.forwardRef<HTMLDivElement, BoxProps>(
     (props, forwardedRef) => {
         const { children, as = "div" } = props;
+        const style = getStylesFromProps(props);
         return as === "span" ? (
-            <span ref={forwardedRef} {...props}>
+            <span ref={forwardedRef} style={style} {...props}>
                 {children}
             </span>
         ) : (
-            <div ref={forwardedRef} {...props}>
+            <div ref={forwardedRef} style={style} {...props}>
                 {children}
             </div>
         );
