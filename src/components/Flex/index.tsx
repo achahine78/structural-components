@@ -9,14 +9,20 @@ export type FlexProps = {
     justify?: "start" | "center" | "end" | "between";
     wrap?: "nowrap" | "wrap" | "wrap-reverse";
     gap?: number;
-    gapX?: number;
-    gapY?: number;
 } & BoxProps;
 
 export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
     (props, forwardedRef) => {
         const stylesFromProps = getStylesFromProps(props);
-        const { display = 'flex', direction, align, justify, wrap, style } = props;
+        const {
+            display = "flex",
+            direction,
+            align,
+            justify,
+            wrap,
+            style,
+            gap,
+        } = props;
         return (
             <Box
                 {...props}
@@ -26,6 +32,7 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
                     alignItems: align,
                     justifyContent: justify,
                     flexWrap: wrap,
+                    gap: String(gap) + "px",
                     ...style,
                     ...stylesFromProps,
                 }}
