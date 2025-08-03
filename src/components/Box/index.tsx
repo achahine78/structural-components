@@ -63,7 +63,7 @@ export type GridChildrenProps = {
 };
 
 export type BoxProps = {
-    children: ReactNode;
+    children?: ReactNode;
     as?: "div" | "span";
     style?: React.CSSProperties;
 } & Partial<PaddingProps> &
