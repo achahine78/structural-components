@@ -15,8 +15,8 @@ export type FlexProps = {
 
 export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
     (props, forwardedRef) => {
-        const style = getStylesFromProps(props);
-        const { display, direction, align, justify, wrap } = props;
+        const stylesFromProps = getStylesFromProps(props);
+        const { display, direction, align, justify, wrap, style } = props;
         return (
             <Box
                 {...props}
@@ -27,6 +27,7 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
                     justifyContent: justify,
                     flexWrap: wrap,
                     ...style,
+                    ...stylesFromProps,
                 }}
                 ref={forwardedRef}
             />
