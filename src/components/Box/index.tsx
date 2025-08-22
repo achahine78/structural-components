@@ -79,12 +79,13 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>(
             ...getStylesFromProps(props),
             ...style,
         };
+
         return as === "span" ? (
-            <span ref={forwardedRef} style={computedStyles} {...props}>
+            <span {...props} ref={forwardedRef} style={computedStyles}>
                 {children}
             </span>
         ) : (
-            <div ref={forwardedRef} style={computedStyles} {...props}>
+            <div {...props} ref={forwardedRef} style={computedStyles}>
                 {children}
             </div>
         );
