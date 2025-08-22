@@ -5,8 +5,8 @@ import { Box, BoxProps } from "../Box";
 export type GridProps = {
     display?: "none" | "inline-grid" | "grid";
     areas?: string;
-    columns?: number;
-    rows?: number;
+    columns?: string;
+    rows?: string;
     flow?: "row" | "column" | "dense" | "row-dense" | "column-dense";
     align?: "start" | "center" | "end" | "baseline" | "stretch";
     justify?: "start" | "center" | "end" | "between";
