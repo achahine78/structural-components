@@ -11,22 +11,36 @@ export type GridProps = {
     align?: "start" | "center" | "end" | "baseline" | "stretch";
     justify?: "start" | "center" | "end" | "between";
     gap?: number;
-    gapX?: number;
-    gapY?: number;
 } & BoxProps;
 
 export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     (props, forwardedRef) => {
-        const style = getStylesFromProps(props);
-        const { display, align, justify, } = props;
+        const stylesFromProps = getStylesFromProps(props);
+        const {
+            display = "grid",
+            areas,
+            columns,
+            rows,
+            flow,
+            align,
+            justify,
+            gap,
+            style,
+        } = props;
         return (
             <Box
                 {...props}
                 style={{
                     display,
+                    gridTemplateAreas: areas,
+                    gridTemplateColumns: columns,
+                    gridTemplateRows: rows,
+                    gridAutoFlow: flow,
                     alignItems: align,
                     justifyContent: justify,
+                    gap: String(gap) + "px",
                     ...style,
+                    ...stylesFromProps,
                 }}
                 ref={forwardedRef}
             />
