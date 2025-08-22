@@ -6,7 +6,7 @@ export type FlexProps = {
     display?: "none" | "inline-flex" | "flex";
     direction?: "row" | "column" | "row-reverse" | "column-reverse";
     align?: "start" | "center" | "end" | "baseline" | "stretch";
-    justify?: "start" | "center" | "end" | "between";
+    justify?: "start" | "center" | "end" | "space-between";
     wrap?: "nowrap" | "wrap" | "wrap-reverse";
     gap?: number;
 } & BoxProps;
